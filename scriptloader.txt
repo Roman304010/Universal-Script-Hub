@@ -1,0 +1,260 @@
+-- Loadstring
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+-- Create Window
+local Window = Library:NewWindow("TG: @RobloxScriptVegaX")
+
+-- Create Section
+local Section = Window:NewSection("🔗TG Channel Link")
+
+-- Create Button
+Section:CreateButton("📋Copy TG Channel Link", function()
+setclipboard("https://t.me/RobloxScriptVegaX")
+local player = game.Players.LocalPlayer
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "✅🔗Link Copied!";
+    Text = "Check your clipboard";
+    Duration = 5;
+})
+end)
+
+-- Creator Info
+local Creator = Window:NewSection("👤 Creator")
+Creator:CreateButton("TG Username", function()
+setclipboard("@Roman304010")
+    game:GetService("StarterGui"):SetCore("SendNotification",{
+        Title = "Copied!",
+        Text = "Username saved",
+        Duration = 2
+    })
+end)
+
+local TweenService = game:GetService("TweenService")
+
+-- Улучшенные переводы с иконками
+local translations = {
+    RU = {
+        title = "🌟 Universal Script Hub",
+        status = "🟢 Статус: Полностью работающий",
+        author = "👤 Автор: R341",
+        version = "🔖 Версия: Пре-Альфа V2",
+        last_update = "📅 Обновление: 15.06.25",
+        run_button = "🚀 Запустить"
+    },
+    EN = {
+        title = "🌟 Universal Script Hub",
+        status = "🟢 Status: Fully operational",
+        author = "👤 Author: R341",
+        version = "🔖 Version: Pre-Alpha V2",
+        last_update = "📅 Update: 15.06.25",
+        run_button = "🚀 Run"
+    }
+}
+
+-- Создаем красивый интерфейс с эффектами
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ModernScriptsLoader"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Основной контейнер с тенью
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 350, 0, 250)
+Frame.Position = UDim2.new(1, 0, 1, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+-- Эффект тени
+local Shadow = Instance.new("ImageLabel")
+Shadow.Name = "Shadow"
+Shadow.Image = "rbxassetid://1316045217"
+Shadow.ImageColor3 = Color3.new(0, 0, 0)
+Shadow.ImageTransparency = 0.8
+Shadow.ScaleType = Enum.ScaleType.Slice
+Shadow.SliceCenter = Rect.new(10, 10, 118, 118)
+Shadow.Size = UDim2.new(1, 20, 1, 20)
+Shadow.Position = UDim2.new(0, -10, 0, -10)
+Shadow.BackgroundTransparency = 1
+Shadow.Parent = Frame
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 8)
+UICorner.Parent = Frame
+
+-- Заголовок с градиентом
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Text = translations.RU.title
+TitleLabel.Size = UDim2.new(1, -20, 0, 40)
+TitleLabel.Position = UDim2.new(0, 10, 0, 10)
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextSize = 20
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+TitleLabel.TextWrapped = true
+TitleLabel.Parent = Frame
+
+-- Разделительная линия
+local Divider = Instance.new("Frame")
+Divider.Size = UDim2.new(1, -20, 0, 1)
+Divider.Position = UDim2.new(0, 10, 0, 55)
+Divider.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+Divider.BorderSizePixel = 0
+Divider.Parent = Frame
+
+-- Создаем информационные карточки
+local function CreateInfoCard(text, position)
+    local card = Instance.new("Frame")
+    card.Size = UDim2.new(1, -20, 0, 25)
+    card.Position = position
+    card.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    card.BorderSizePixel = 0
+    card.Parent = Frame
+    
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 4)
+    corner.Parent = card
+    
+    local label = Instance.new("TextLabel")
+    label.Text = text
+    label.Size = UDim2.new(1, -10, 1, 0)
+    label.Position = UDim2.new(0, 10, 0, 0)
+    label.TextColor3 = Color3.fromRGB(200, 200, 200)
+    label.BackgroundTransparency = 1
+    label.Font = Enum.Font.Gotham
+    label.TextSize = 14
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Parent = card
+    
+    return card
+end
+
+-- Информационные карточки
+local StatusCard = CreateInfoCard(translations.RU.status, UDim2.new(0, 10, 0, 65))
+local AuthorCard = CreateInfoCard(translations.RU.author, UDim2.new(0, 10, 0, 95))
+local VersionCard = CreateInfoCard(translations.RU.version, UDim2.new(0, 10, 0, 125))
+local UpdateCard = CreateInfoCard(translations.RU.last_update, UDim2.new(0, 10, 0, 155))
+
+-- Красивая кнопка запуска с эффектом наведения
+local RunButton = Instance.new("TextButton")
+RunButton.Text = translations.RU.run_button
+RunButton.Size = UDim2.new(1, -40, 0, 40)
+RunButton.Position = UDim2.new(0, 20, 0, 190)
+RunButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+RunButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+RunButton.Font = Enum.Font.GothamBold
+RunButton.TextSize = 16
+RunButton.AutoButtonColor = false
+RunButton.Parent = Frame
+
+local RunButtonCorner = Instance.new("UICorner")
+RunButtonCorner.CornerRadius = UDim.new(0, 6)
+RunButtonCorner.Parent = RunButton
+
+-- Эффект при наведении на кнопку
+RunButton.MouseEnter:Connect(function()
+    TweenService:Create(RunButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(0, 200, 0),
+        TextColor3 = Color3.fromRGB(255, 255, 255)
+    }):Play()
+end)
+
+RunButton.MouseLeave:Connect(function()
+    TweenService:Create(RunButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(0, 170, 0),
+        TextColor3 = Color3.fromRGB(255, 255, 255)
+    }):Play()
+end)
+
+-- Кнопка перевода языка
+local LanguageButton = Instance.new("TextButton")
+LanguageButton.Text = "EN"
+LanguageButton.Size = UDim2.new(0, 50, 0, 25)
+LanguageButton.Position = UDim2.new(1, -60, 0, 10)
+LanguageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+LanguageButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+LanguageButton.Font = Enum.Font.Gotham
+LanguageButton.TextSize = 14
+LanguageButton.AutoButtonColor = false
+LanguageButton.Parent = Frame
+
+local langCorner = Instance.new("UICorner")
+langCorner.CornerRadius = UDim.new(0, 4)
+langCorner.Parent = LanguageButton
+
+-- Эффекты для кнопки языка
+LanguageButton.MouseEnter:Connect(function()
+    TweenService:Create(LanguageButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    }):Play()
+end)
+
+LanguageButton.MouseLeave:Connect(function()
+    TweenService:Create(LanguageButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    }):Play()
+end)
+
+local currentLang = "RU"
+
+local function UpdateLanguage()
+    local lang = translations[currentLang]
+    TitleLabel.Text = lang.title
+    StatusCard:FindFirstChildOfClass("TextLabel").Text = lang.status
+    AuthorCard:FindFirstChildOfClass("TextLabel").Text = lang.author
+    VersionCard:FindFirstChildOfClass("TextLabel").Text = lang.version
+    UpdateCard:FindFirstChildOfClass("TextLabel").Text = lang.last_update
+    RunButton.Text = lang.run_button
+end
+
+LanguageButton.MouseButton1Click:Connect(function()
+    currentLang = currentLang == "RU" and "EN" or "RU"
+    LanguageButton.Text = currentLang
+    UpdateLanguage()
+end)
+
+-- Плавные анимации
+local function AnimateIn()
+    Frame.Position = UDim2.new(1, 0, 1, 0)
+    Frame.Visible = true
+    Frame:TweenPosition(UDim2.new(0.5, -175, 0.5, -125), "Out", "Quad", 0.6, true, function()
+        -- Небольшая анимация после появления
+        for i, card in ipairs(Frame:GetChildren()) do
+            if card:IsA("Frame") and card.Name ~= "Shadow" then
+                card.BackgroundTransparency = 1
+                TweenService:Create(card, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    BackgroundTransparency = 0
+                }):Play()
+            end
+        end
+    end)
+end
+
+local function AnimateOut(callback)
+    -- Анимация исчезновения карточек
+    for i, card in ipairs(Frame:GetChildren()) do
+        if card:IsA("Frame") and card.Name ~= "Shadow" then
+            TweenService:Create(card, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                BackgroundTransparency = 1
+            }):Play()
+        end
+    end
+    
+    task.wait(0.2)
+    Frame:TweenPosition(UDim2.new(1.5, 0, 0.5, -125), "Out", "Quad", 0.5, true, function()
+        ScreenGui:Destroy()
+        if callback then callback() end
+    end)
+end
+
+-- Запускаем анимацию появления
+AnimateIn()
+
+-- Обработчик кнопки запуска
+RunButton.MouseButton1Click:Connect(function()
+    RunButton.Text = currentLang == "RU" and "Загрузка..." or "Loading..."
+    AnimateOut(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Roman304010/Universal-Script-Hub/refs/heads/main/Protected_8487639683843635.lua"))();
+    end)
+end)
